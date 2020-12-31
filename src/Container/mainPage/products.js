@@ -1,10 +1,12 @@
 import React, {Component} from 'react'
 import Filter from "./filter";
+import {NavLink} from "react-router-dom";
 
 class Products extends Component {
 
     state = {
-        products: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 11, 1, 11, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 11, 1, 11, 1, 1, 1, 1, 1, 1, 1, 1,1]
+        products: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 11, 1, 11, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 11, 1, 11, 1, 1, 1, 1, 1, 1, 1, 1,1],
+        userEmail:'user@gmail.com',
     }
 
     downloadFile = () => {
@@ -40,9 +42,13 @@ class Products extends Component {
                                     <td>Mark</td>
                                     <td>Otto</td>
                                     <td>@mdo</td>
+                                    <td><NavLink to={{pathname: '/profile/'+this.state.userEmail+'/files'}}>User</NavLink></td>
+
                                     <td>@mdo</td>
-                                    <td>@mdo</td>
-                                    <td onClick={this.downloadFile}> <a style={{color:'lightblue',cursor:'pointer'}}>download</a></td>
+
+
+                                    <td onClick={this.downloadFile}><a
+                                        style={{color: 'lightblue', cursor: 'pointer'}}>download</a></td>
                                 </tr>
 
                             )

@@ -1,25 +1,36 @@
 import React, {Component} from 'react'
-import {NavLink} from "react-router-dom";
+import { NavLink} from "react-router-dom";
 
 class Header extends Component {
+
+    state = {
+        ownerEmail:"Abdo@gmail.com"
+    }
+
     render() {
         return (
             <div>
                 <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
                     <div className="container-fluid">
-                        <a className="navbar-brand" > <strong> Our Drive </strong></a>
+                        <p className="navbar-brand" > <strong> Our Drive </strong></p>
                         <div className="collapse navbar-collapse d-flex justify-content-between">
                             <ul className="navbar-nav">
                                 <li className="nav-item">
-                                    <NavLink className="nav-link active" to={{pathname:'/home'}}>
-                                        <a>Home</a>
+                                    <NavLink className="nav-link active" to={{pathname:'/home'}} >
+                                        <p>Home</p>
                                     </NavLink>
                                 </li>
 
                             </ul>
                             <ul className="navbar-nav">
                                 <li className="nav-item">
-                                    <NavLink  className="nav-link" to={{pathname:'/profile/files'}} >
+                                    <NavLink  className="nav-link" to={{pathname:'/login'}} >
+                                        <strong>Login</strong>
+                                    </NavLink>
+                                </li>
+
+                                <li className="nav-item">
+                                    <NavLink  className="nav-link" to={{pathname:'/profile/'+this.state.ownerEmail+'/files'}} >
                                         <strong>Abdo nasr</strong>
                                     </NavLink>
                                 </li>
