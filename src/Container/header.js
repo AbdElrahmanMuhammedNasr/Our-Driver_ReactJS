@@ -7,7 +7,7 @@ class Header extends Component {
             <div>
                 <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
                     <div className="container-fluid">
-                        <a className="navbar-brand" > <strong> Our Driver </strong></a>
+                        <a className="navbar-brand" > <strong> Our Drive </strong></a>
                         <div className="collapse navbar-collapse d-flex justify-content-between">
                             <ul className="navbar-nav">
                                 <li className="nav-item">

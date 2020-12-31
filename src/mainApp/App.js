@@ -18,13 +18,11 @@ function App() {
             {/*</div>*/}
 
 
-            <div className="row" style={{'width': '100%', 'margin': '0px 0px'}}>
+            <div style={{'width': '100%', minHeight: '85vh', 'margin': '0px 0px', padding:'0px'}}>
 
-                <section className="col-sm-12">
-                    <Route path={"/home"} component={Products} ></Route>
-                    <Route path={"/profile"} component={Profile} ></Route>
+                <Route path={"/home"} component={Products}></Route>
+                <Route path={"/profile"} component={Profile}></Route>
 
-                </section>
 
             </div>
 

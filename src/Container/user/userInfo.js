@@ -5,14 +5,14 @@ import {NavLink} from "react-router-dom";
 class UserInfo extends Component {
     render() {
         return (
-            <div className="d-flex justify-content-between flex-column p-5" style={{
+            <div className="d-flex justify-content-between flex-column p-5 bg-dark text-white"  style={{
                 width: '100%',
-                height: '30vh',
+                height: '35vh',
                 backgroundColor: 'white',
                 textAlign: 'center',
                 boxShadow: '0px 0px 10px black',
                 borderRadius: '20px',
-                margin:'10vh 0px'
+                margin:'10vh 10px'
             }}>
                 <section className="row">
                     <img style={{width:'200px',margin:'0px auto'}} src={userImage}/>
