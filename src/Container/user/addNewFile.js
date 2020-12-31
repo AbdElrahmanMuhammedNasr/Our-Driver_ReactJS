@@ -1,13 +1,21 @@
-import React, {Component} from "react";
+import React, {useState} from "react";
 
-class AddNewFile extends Component {
+const AddNewFile = (props) => {
+    const [name, setName] = useState('');
+    const [snapshot, setSnapshot] = useState('');
+    const [file, setFile] = useState('');
+    const [type, setType] = useState('');
 
-    addNewFile = () => {
-        console.log("Add")
+    const addNewFile = (event) => {
+        event.preventDefault();
+        console.log(name)
+        console.log(snapshot)
+        console.log(file)
+        console.log(type)
     }
 
-    render() {
-        return (
+    return (
+        <form onSubmit={addNewFile} method="POST">
             <div className="d-flex justify-content-center ">
                 <section className="p-3 bg-white"
                          style={{
@@ -19,39 +27,40 @@ class AddNewFile extends Component {
                          }}>
                     <div className="form-group m-3">
                         <label>File Name</label>
-                        <input type="text" className="form-control  " placeholder="please enter file name"/>
+                        <input type="text" className="form-control  " placeholder="please enter file name" value={name}
+                               onChange={({target}) => setName(target.value)}/>
                     </div>
 
 
                     <div className="form-group m-3">
                         <label>SnapShot</label>
-                        <textarea style={{minHeight: '500px'}} type="text" className="form-control "
-                                  placeholder="please enter  snapshot about your file"></textarea>
+                        <textarea style={{minHeight: '200px'}} type="text" className="form-control "
+                                  placeholder="please enter  snapshot about your file" value={snapshot}
+                                  onChange={({target}) => setSnapshot(target.value)}> </textarea>
                     </div>
 
                     <div className="form-group m-3">
                         <label>File</label>
-                        <input type="file" className="form-control   "/>
+                        <input type="file" className="form-control" value={file}
+                               onChange={({target}) => setFile(target.value)}/>
                     </div>
 
                     <div className="form-group m-3">
                         <label>Type</label>
-                        <select className="form-control ">
-                            <option selected>Choose...</option>
-                            <option>Movie</option>
-                            <option>File</option>
-                            <option>Course</option>
-                            <option>image</option>
-                        </select>
+
+                        <input type="tex" className="form-control" value={type}
+                               onChange={({target}) => setType(target.value)}/>
+
                     </div>
 
 
-                    <button className="btn btn-primary" onClick={this.addNewFile}>Push File</button>
+                    <button className="btn btn-primary" type="submit">Push File</button>
 
                 </section>
             </div>
+        </form>
         )
-    }
+
 }
 
 export default AddNewFile;

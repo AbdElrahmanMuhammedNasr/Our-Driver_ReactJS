@@ -11,14 +11,6 @@ function App() {
     return (
         <div className="App" style={{'font-family': ''}}>
             <Header/>
-            {/*<div className="container jumbotron text-white bg-dark p-2 "*/}
-            {/*     style={{'margin': '10px auto', 'border-radius': '10px'}}>*/}
-            {/*    <strong className="display-6">Hello!</strong>*/}
-            {/*    <p className="lead">This is Our Website to share.</p>*/}
-            {/*    <hr className="my-4"/>*/}
-            {/*    <p>this site aim to share your staff with there user and the can download it if they need it.</p>*/}
-            {/*</div>*/}
-
 
             <div style={{'width': '100%', minHeight: '85vh', 'margin': '0px 0px', padding: '0px'}}>
 
