@@ -12,7 +12,7 @@ function App() {
         <div className="App" style={{'font-family': ''}}>
             <Header/>
 
-            <div style={{'width': '100%', minHeight: '85vh', 'margin': '0px 0px', padding: '0px'}}>
+            <div style={{'width': '100%', minHeight: '83vh', 'margin': '0px 0px', padding: '0px'}}>
 
                 <Route path={"/login"} component={Login}/>
                 <Route path={"/signUp"} component={SignUp}/>

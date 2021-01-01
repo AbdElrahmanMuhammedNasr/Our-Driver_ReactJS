@@ -5,18 +5,25 @@ class Files extends Component {
     state = {
         files: [],
         numberOfFiles:0,
+        owner: true
     }
 
     componentDidMount() {
-        const email = localStorage.getItem("loginEmail");
+        const ownerEmail = localStorage.getItem("loginEmail");
+        const email = this.props.match.params.email;
+        this.setState({
+            ...this.state,
+            owner: email === ownerEmail
+        })
+
         axios.get('/file/getUserFile/' + email)
             .then(r => {
                 if (r.status === 200) {
                     console.log(r.data)
                     this.setState({
                         ...this.state,
-                        files :r.data.files,
-                        numberOfFiles :r.data.beta.number
+                        files: r.data.files,
+                        numberOfFiles: r.data.beta.number
 
                     })
                 }
@@ -24,6 +31,14 @@ class Files extends Component {
             }).catch(err => {
             console.log(err)
         })
+    }
+
+    onDeleteFile(id) {
+        axios.delete("/file/deleteFile/" + id)
+            .then(r => {
+                console.log(r)
+                this.componentDidMount();
+            }).catch(err => console.log(err))
     }
 
     render() {
@@ -42,9 +57,15 @@ class Files extends Component {
                                 </section>
                                 <div className="card-body">
                                     <h5 className="card-title">{e.snapShot}</h5>
-                                    <p className="card-text"><small className="text-muted">Publish at : {e.createAt.slice(0,10)}</small>
+                                    <p className="card-text"><small className="text-muted">Publish at
+                                        : {e.createAt.slice(0, 10)}</small>
                                     </p>
-                                    <button className="btn btn-danger">Delete File</button>
+                                    {
+                                        this.state.owner ? <button className="btn btn-danger" onClick={() => {
+                                                this.onDeleteFile(e._id)
+                                            }}>Delete File</button>
+                                            : null
+                                    }
                                 </div>
                             </div>
 
