@@ -4,7 +4,15 @@ import { NavLink} from "react-router-dom";
 class Header extends Component {
 
     state = {
-        ownerEmail:"Abdo@gmail.com"
+        ownerEmail:""
+    }
+
+    componentDidMount() {
+        this.setState({
+            ...this.state,
+            ownerEmail:localStorage.getItem("loginEmail")
+
+        })
     }
 
     render() {
@@ -31,7 +39,7 @@ class Header extends Component {
 
                                 <li className="nav-item">
                                     <NavLink  className="nav-link" to={{pathname:'/profile/'+this.state.ownerEmail+'/files'}} >
-                                        <strong>Abdo nasr</strong>
+                                        <strong>myProfile</strong>
                                     </NavLink>
                                 </li>
                             </ul>

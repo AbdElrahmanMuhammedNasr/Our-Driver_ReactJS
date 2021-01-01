@@ -1,20 +1,37 @@
 import React, {useState} from "react";
 import {NavLink} from "react-router-dom";
+import axios from "axios";
 
 const Login = (props) => {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const disableBtn = email == "" | password == "";
+    const disableBtn = email === "" | password === "";
+
     const onLogin = (event) => {
         event.preventDefault();
-        console.log(email, password)
-        props.history.push('/home')
+        const authBody = {
+            email,
+            password
+        }
+        axios.post('/auth/login', authBody)
+            .then(r => {
+                if (r.status === 200) {
+                    localStorage.setItem('loginEmail',email);
+                    props.history.push('/home')
+                }
+                // console.log(r)
+            })
+            .catch(err => {
+                setEmail('');
+                setPassword('');
+            })
     };
 
 
     return (
+
         <form onSubmit={onLogin} method="POST">
 
             <div className="container jumbotron text-white bg-dark  p-3 col-12 col-sm-10 col-md-6 "

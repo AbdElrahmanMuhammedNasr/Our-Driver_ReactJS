@@ -17,17 +17,23 @@ const UserInfo = (props) => {
         }}>
             <section className="row">
                 <img style={{width: '200px', margin: '0px auto'}} src={userImage}/>
-               <h3>   <strong>{props.UserDate.name}</strong> </h3>
-                <small>Joined at {props.UserDate.createAt}</small>
-                <small>Email : {props.UserDate.email}</small>
+                <h3><strong>{props.UserData.name}</strong></h3>
+                <small>Joined at : {props.UserData.createAt.slice(0, 10)}</small>
+                <small>Email : {props.UserData.email}</small>
             </section>
 
 
             <section className="row">
-                <NavLink className="btn btn-primary" to={{pathname: '/profile/' + props.UserDate.email + '/files'}}>Show
+                <NavLink className="btn btn-primary" to={{pathname: '/profile/' + props.UserData.email + '/files'}}>Show
                     Files</NavLink>
-                <NavLink style={{margin: '10px 0px'}} className="btn btn-success"
-                         to={{pathname: '/profile/' + props.UserDate.email + '/addNewFile'}}>Add File</NavLink>
+                {
+                    props.UserData.email === localStorage.getItem('loginEmail')
+                        ? <NavLink style={{margin: '10px 0px'}} className="btn btn-success"
+                                   to={{pathname: '/profile/' + props.UserData.email + '/addNewFile'}}>Add
+                            File</NavLink>
+                        : null
+                }
+
             </section>
             </div>
         )

@@ -1,12 +1,28 @@
 import React, {Component} from 'react'
 import Filter from "./filter";
 import {NavLink} from "react-router-dom";
+import axios from "axios";
 
 class Products extends Component {
 
     state = {
-        products: [1, 1, 1, 1, 1, 1, 1,1, 1, 1, 1, 1, 1, 1, 11, 1, 11, 1, 1, 1, 1, 1, 1, 1, 1, 1, 11, 1, 11, 1, 1, 1, 1, 1, 1, 1, 1, 1, 11, 1, 11, 1, 1,  1, 1, 1, 1, 1, 1, 1, 11, 1, 11, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 11, 1, 11, 1, 1, 1, 1, 1, 1, 1, 1,1],
-        userEmail:'user@gmail.com',
+        products: [],
+    }
+
+    componentDidMount() {
+        axios.get('/file/getInitFiles/' + 10)
+            .then(r => {
+                if (r.status === 200) {
+                    // console.log(r)
+                    this.setState({
+                        ...this.state,
+                        products: r.data.files
+                    })
+                }
+
+            }).catch(err => {
+            console.log(err)
+        })
     }
 
     downloadFile = () => {
@@ -15,7 +31,7 @@ class Products extends Component {
 
     render() {
         return (
-            <div style={{textAlign:'center'}}>
+            <div style={{textAlign: 'center'}}>
                 <Filter/>
 
 
@@ -38,16 +54,18 @@ class Products extends Component {
                     {
                         this.state.products.map(e => {
                             return (
-                                <tr key={Math.random()}>
-                                    <th scope="row">{parseInt(Math.random()*100)}</th>
-                                    <td>Mark</td>
-                                    <td>OttoOttoOttoOttoOttoOttoOttoOttoOttoOttoOttoOttoOttoOtto</td>
-                                    <td>@mdo</td>
-                                    <td><NavLink to={{pathname: '/profile/'+this.state.userEmail+'/files'}}>User</NavLink></td>
-                                    <td>@mdo</td>
+                                <tr key={e._id}>
+                                    <th scope="row">{e._id.slice(0,5)}</th>
+                                    <td>{e.name}</td>
+                                    <td>{e.snapShot}</td>
+                                    <td>{e.type}</td>
+                                    <td><NavLink
+                                        to={{pathname: '/profile/' + e.userEmail + '/files'}}>{e.userEmail}</NavLink>
+                                    </td>
+                                    <td>{e.createAt.slice(0, 10)}</td>
                                     <td onClick={this.downloadFile}><a
                                         style={{color: 'lightblue', cursor: 'pointer'}}>download</a></td>
-                                    <td>12</td>
+                                    <td>{e.downloadNum}</td>
                                 </tr>
 
                             )

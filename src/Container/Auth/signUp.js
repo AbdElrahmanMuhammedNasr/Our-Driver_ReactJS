@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import {NavLink} from "react-router-dom";
+import axios from "axios";
 
 const SignUp = (props) => {
     const [email, setEmail] = useState('');
@@ -7,12 +8,30 @@ const SignUp = (props) => {
     const [password, setPassword] = useState('');
     const [conPassword, setConPassword] = useState('');
 
-    const disableBtn = email == "" | password == "" | name == "" | conPassword == "";
+    const disableBtn = email === "" | password === "" | name === "" | conPassword === "";
 
     const onSignUp = (event) => {
         event.preventDefault();
-        console.log(email, name, password, conPassword)
-        props.history.push('/home');
+        if (password === conPassword) {
+            const userBody = {
+                email,
+                name,
+                password
+            }
+            axios.post('/user/createUser', userBody)
+                .then(r => {
+                    // console.log(r)
+                    if (r.status === 200) {
+                        props.history.push('/home');
+
+                    }
+                }).catch(err => {
+                setEmail('')
+                setName('')
+                setPassword('')
+                setConPassword('')
+            })
+        }
     }
 
 
